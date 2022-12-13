@@ -1,4 +1,4 @@
-# tenable_immersion_day
+# TENABLE IMMERSION DAY lab templates 
 
 Welcome to the lab Instruction!
 
@@ -13,21 +13,23 @@ Welcome to the lab Instruction!
   - Developer workstation (Windows Desktop)
 1.  Laptop with Browser or RDP access
 
-
+<!--- HIDDEN REQUIREMENTS
+- S3 BUCKET TO STORE LAB FILES, NOTES AND PDFS
+- IAM ROLES/PERMISSIONS
+-   
+--->
 Instructor Led :
 * AWS account 
 								  
 Self-paced :
 If you want to run pre-requisite steps by yourself:
 * AWS account - if you don't have one, Sign-up for [free AWS account](https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc) . All sevices in this lab are not covered under free tier, so it may incur some minor cost.
+* REQUIRES Tenable cloud account.  [Sign up for a demo @ (https://www.tenable.com)
 * Follow the instruction in the labs below
-
-   
-Click the **Deploy to AWS** icons below to stand up the RDS database infrastructure. 
 
 | Region | Launch Template |
 | ------------ | ------------- | 
-**N.Virginia** (us-east-1) | [![Launch CloudFormation](/ee_helper/assets/images/00-deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?stackName=dmslab-instructor&templateURL=https://s3.amazonaws.com/aws-dataengineering-day.workshop.aws/DMSLab_instructor_CFN.yaml) 
+**N.Virginia** (us-east-1) | [![Launch CloudFormation]]
 
 ### What you'll do:
 
@@ -35,16 +37,18 @@ These labs are designed to be completed in sequence, and the full set of instruc
 
 __**Ensure your region is US East (N. Virginia)**__
 
-
-* **Workshop Setup:** [Create working environment on AWS](#workshop-setup)
-* **Lab 1:** PreCommmit Stage - IaC scan on Developer workstation
-* **Lab 2:** PostCommit State - IaC scan on SourceCode
-* **Lab 3:** CI/CD scan - Integration with CI/CD pipeline
-* **Lab 4:** Cloud Scan/Drift Detection
-* **Lab 5:** Agentless Assessment / Vulnerability Management
-* **Cleanup** 
-
-
+### Labs
+1.  Onboarding Workshop [onboarding.pdf](#onboarding_workshop)
+1.  PreCommmit Stage - IaC scan on Developer workstation 
+1.  PostCommit State - IaC scan on SourceCode
+1.  CI/CD scan - Integration with CI/CD pipeline
+1.  GitHub Actions
+1.  Terraform Run Actions
+1.  Cloud Scan/Drift Detection
+1.  Agentless Assessment / Vulnerability Management
+1.  Reports
+1.  CloudTrail Integration
+1.  Cleanup 
 
 
 What you'll do:
