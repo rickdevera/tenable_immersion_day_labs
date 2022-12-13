@@ -1,0 +1,544 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: AWS Jam CFN Template
+Parameters:
+  ProjectName:
+    Description: Name of the ProjectName
+    Type: String
+    Default: awsjam
+  Author:
+    Description: Author (should be meta data)
+    Type: String
+    Default: rdevera@tenable.com
+  Version:
+    Description: Version
+    Type: String
+    Default: v2
+  IAMRoles:
+    Description: Version
+    Type: String
+    Default: https://aws-jam-challenge-resources.s3.amazonaws.com/scan-and-remediate-ninja/aa_role.yaml
+Resources:
+  GuacamoleInstance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: t2.medium
+#      ImageId: ami-0d5584018b6702c17
+      ImageId:  !FindInMap 
+        - RegionMap
+        - !Ref 'AWS::Region'
+        - GUACAMI
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: "true"
+          DeviceIndex: "0"
+          GroupSet:
+            - Ref: AwsPublicSecurityGroup
+          SubnetId: 
+            Ref: AwsJamPublicSubnet
+          DeleteOnTermination: "true"
+      Tags:
+        - Key: Name
+          Value: "GuacamoleJumpBox"
+        - Key: purpose
+          Value: awsjams
+        - Key: Version
+          Value: !Sub Version
+        - Key: author
+          Value: !Sub Author
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 24d3c4d8-47ef-4574-9162-b11bdb3073f3
+ # GuacamoleNetIF01:
+ #   Type: AWS::EC2::NetworkInterface
+ #   Properties:
+ #     Description: Network Interface for Guacamole
+ #     DeviceIndex: "0"
+ #     SubnetId: !Ref AwsJamPublicSubnet
+  AwsPublicSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Enable SSH to my EC2Instance and port 8080 to 
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 8080
+          ToPort: 8080
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: icmp
+          FromPort: 0
+          ToPort: 0
+          CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+        - IpProtocol: "-1"
+          FromPort: 0
+          ToPort: 0
+          CidrIp: 10.0.0.0/8
+      VpcId: !Ref AWSJamVPC
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 378900f8-dfab-4a33-9496-c1ef74c8516b
+  AwsWindowsSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: RDP access to windows server
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 3389
+          ToPort: 3389
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: icmp
+          FromPort: 0
+          ToPort: 0
+          CidrIp: 10.0.0.0/8
+      SecurityGroupEgress:
+        - IpProtocol: "-1"
+          FromPort: 0
+          ToPort: 0
+          CidrIp: 0.0.0.0/0
+      VpcId: !Ref AWSJamVPC
+  AwsInternalSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: comm between internal networks
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 8080
+          ToPort: 8080
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 9020
+          ToPort: 9020
+          CidrIp: 10.0.0.0/16 
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 10.0.0.0/16
+      SecurityGroupEgress:
+        - IpProtocol: "-1"
+          FromPort: 0
+          ToPort: 0
+          CidrIp: 10.1.0.0/16
+      VpcId: !Ref AWSJamVPC
+      Tags:
+        - Key: Name
+          Value: "drift_demo"
+  AWSJamVPC:
+    Type: 'AWS::EC2::VPC'
+    Properties:
+      CidrBlock: 10.1.0.0/16
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: fddde793-4fce-4f6f-939d-0d8781d3ba3d
+  AWSJamInternalSubnet:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref AWSJamVPC
+      CidrBlock: 10.1.2.0/24
+      AvailabilityZone: !Select 
+        - '0'
+        - !GetAZs ''
+      Tags:
+        - Key: Name
+          Value: "drift_demo"
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: d1663f3a-2a13-4f2e-bf43-8adbf683a5cc
+  AwsJamIGW:
+    Type: 'AWS::EC2::InternetGateway'
+    Properties: {}
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: b9b95cb8-e623-40d8-9c19-b6c361c76e79
+  AwsJamRouteTable:
+    Type: 'AWS::EC2::RouteTable'
+    Properties:
+      VpcId: !Ref AWSJamVPC
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 098c11b6-3f03-4c58-bd8a-be133ef73fe9
+  AwsJamPublicRoute:
+    Type: 'AWS::EC2::Route'
+    Properties:
+      RouteTableId: !Ref AwsJamRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: 
+        Ref: AwsJamIGW
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 0073d26b-d5df-4cf1-81cd-f8dad8f8ece7
+    DependsOn:
+      - AwsJamIGW
+  EC2VPCG3CQWV:
+    Type: 'AWS::EC2::VPCGatewayAttachment'
+    Properties:
+      VpcId: !Ref AWSJamVPC
+      InternetGatewayId: !Ref AwsJamIGW
+  AwsJamPublicSubnet:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref AWSJamVPC
+      CidrBlock: 10.1.1.0/24
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: ed11ad6b-d0c4-4304-bcba-34b112fbb9bd
+##########
+#  Drift Demo Section
+###########        
+  AWSJamDriftVPC:
+    Type: 'AWS::EC2::VPC'
+    Properties:
+      CidrBlock:  172.16.0.0/16
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+  AWSJamDriftSubnet:
+    Type:  'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref AWSJamDriftVPC
+      CidrBlock:  172.16.1.0/24
+      AvailabilityZone: !Select 
+        - '0'
+        - !GetAZs ''
+      Tags:
+        - Key:  Name
+          Value:  "drift_demo"
+  AwsDriftDemoSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: comm between internal networks
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 8080
+          ToPort: 8080
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 9020
+          ToPort: 9020
+          CidrIp: 10.0.0.0/16 
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 10.0.0.0/16
+      SecurityGroupEgress:
+        - IpProtocol: "-1"
+          FromPort: 0
+          ToPort: 0
+          CidrIp: 10.1.0.0/16
+      VpcId: !Ref AWSJamDriftVPC
+      Tags:
+        - Key: Name
+          Value: "drift_demo"
+########
+##  End Drift Section
+########        
+  EC2TestCase:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: t2.micro
+#      ImageId: ami-0d803519bc74364e7
+      ImageId:  !FindInMap 
+        - RegionMap
+        - !Ref 'AWS::Region'
+        - AAAMI
+      NetworkInterfaces:
+         - AssociatePublicIpAddress: "true"
+           PrivateIpAddress: '10.1.1.10'
+           DeviceIndex: "0"
+           GroupSet:
+             - Ref: AwsPublicSecurityGroup
+           SubnetId: 
+            Ref: AwsJamPublicSubnet
+           DeleteOnTermination: "true"
+      Tags:
+        - Key: Name
+          Value: "AA_EC2_Demo"
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 793ef48f-2c1f-48a6-8877-3a44983adfff
+#  OnPremScannerEC2:
+#    Type: 'AWS::EC2::Instance'
+#    Properties:
+#      InstanceType: t2.micro
+#      ImageId: ami-00a10a9bcbd7e64df
+#      NetworkInterfaces:
+#         - AssociatePublicIpAddress: "true"
+#           PrivateIpAddress: '10.1.1.122'
+#           DeviceIndex: "0"
+#           GroupSet:
+#             - Ref: AwsInternalSecurityGroup
+#           SubnetId: 
+#            Ref: AwsJamPublicSubnet
+#           DeleteOnTermination: "true"
+#  GitlabsEC2:
+#    Type: 'AWS::EC2::Instance'
+#    Properties:
+#      InstanceType: t2.micro
+#      ImageId: ami-048820b505dcfc79d
+#      NetworkInterfaces:
+#         - AssociatePublicIpAddress: "true"
+#           PrivateIpAddress: '10.1.1.140'
+#           DeviceIndex: "0"
+#           GroupSet:
+#             - Ref: AwsInternalSecurityGroup
+#           SubnetId: 
+#            Ref: AwsJamPublicSubnet
+#           DeleteOnTermination: "true"
+  Windows10EC2:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: t3.medium
+#      ImageId: ami-0000ad655517bbcf5
+      ImageId:  !FindInMap 
+        - RegionMap
+        - !Ref 'AWS::Region'
+        - W10AMI
+      NetworkInterfaces:
+         - AssociatePublicIpAddress: "true"
+           PrivateIpAddress: '10.1.1.6'
+           DeviceIndex: "0"
+           GroupSet:
+             - Ref: AwsWindowsSecurityGroup
+           SubnetId: 
+            Ref: AwsJamPublicSubnet
+           DeleteOnTermination: "true"
+      Tags:
+        - Key: Name
+          Value: "WindowsRDP"
+  AwsRouteTabAssoc:
+    Type:  AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref AwsJamRouteTable
+      SubnetId: !Ref AwsJamPublicSubnet
+#  GitlabsS3Policy:
+#    Type:  AWS::IAM::Policy
+#    Properties:
+#      PolicyName: "gl-s3-policy"
+#      PolicyDocument:
+#        Version: "2012-10-17",
+#        Statement": 
+#          - Effect: Allow
+#            Action: 
+#              - 's3:PutObject'
+#              - 's3:GetObject'
+#              - 's3:DeleteObject'
+#              - 's3:PutObjectAcl'
+#            Resource: 'arn:aws:s3:::gl-*/*'
+#          - Effect: Allow
+#            Action: 
+#              - 's3:ListBucket'
+#              - 's3:AbortMultipartUpload'
+#              - 's3:ListMultipartUploadParts'
+#              - 's3:ListBucketMultipartUploads'
+#            Resource: 'arn:aws:s3:::gl-*'
+#  GitLabS3AccesRole:
+#    Type:  AWS::IAM::ServiceLinkedRole
+#    Properties:
+#      AWSServiceName: "ec2.amazonaws.com"        
+Outputs:
+  IAMRoles: 
+    Description:  Location of CFN for Creating roles
+    Value:  !Ref IAMRoles
+  AAEC2Id:
+    Description:  Instance Id for AA-EC2-Demo
+    Value:  !Ref EC2TestCase
+  GuacamoleInstanceId:
+    Description: InstanceId of Guacamole
+    Value: !Ref GuacamoleInstance
+  GuacamolePublicDNS:
+    Description: Public DNS Name
+    Value: !GetAtt 
+      - GuacamoleInstance
+      - PublicDnsName
+  GuacamolePublicIP:
+    Description: Public IP Address
+    Value: !GetAtt 
+      - GuacamoleInstance
+      - PublicIp
+#  OnPremScannerId:
+#    Description: InstanceId of OnPremScanner
+#    Value: !Ref OnPremScannerEC2
+#  OnPremScannerIp:
+#    Description: Private IP Address
+#    Value: !GetAtt 
+#      - OnPremScannerEC2
+#      - PrivateIp
+#  GitlabsId:
+#    Description: InstanceId of GitLabs
+#    Value: !Ref GitlabsEC2
+#  GitlabsIp:
+#    Description: Private IP Address
+#    Value: !GetAtt 
+#      - GitlabsEC2
+#      - PrivateIp
+  Windows10Id:
+    Description: Instance Id of Windows 10
+    Value:  !Ref Windows10EC2
+  Windows10Ip:
+    Description:  Private IP Id of Windows 10
+    Value:  !GetAtt
+      - Windows10EC2
+      - PrivateIp
+  Windows10PubIp:
+    Description:  Public IP of Windows 10 for RDP access
+    Value:  !GetAtt 
+      - Windows10EC2
+      - PublicIp
+#  DriftSecurityGroup:
+#    Description:  Security Group for Drift Demo
+#    Value:  !Ref AwsDriftDemoSecurityGroup
+#  DriftSecurityGroupId:
+#    Description:  SecurityGroup Id for Drift Demo
+#    Value:  !GetAtt
+#      - AwsDriftDemoSecurityGroup
+#      - VpcId
+
+Metadata:
+  'AWS::CloudFormation::Designer':
+    fddde793-4fce-4f6f-939d-0d8781d3ba3d:
+      size:
+        width: 290
+        height: 220
+      position:
+        x: 180
+        'y': 110
+      z: 1
+      embeds:
+        - 793ef48f-2c1f-48a6-8877-3a44983adfff
+        - 378900f8-dfab-4a33-9496-c1ef74c8516b
+        - 24d3c4d8-47ef-4574-9162-b11bdb3073f3
+    d1663f3a-2a13-4f2e-bf43-8adbf683a5cc:
+      size:
+        width: 150
+        height: 150
+      position:
+        x: -20
+        'y': -60
+      z: 1
+      embeds: []
+    378900f8-dfab-4a33-9496-c1ef74c8516b:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 220
+        'y': 140
+      z: 2
+      parent: fddde793-4fce-4f6f-939d-0d8781d3ba3d
+      embeds: []
+      iscontainedinside:
+        - fddde793-4fce-4f6f-939d-0d8781d3ba3d
+        - fddde793-4fce-4f6f-939d-0d8781d3ba3d
+        - fddde793-4fce-4f6f-939d-0d8781d3ba3d
+        - fddde793-4fce-4f6f-939d-0d8781d3ba3d
+        - fddde793-4fce-4f6f-939d-0d8781d3ba3d
+        - fddde793-4fce-4f6f-939d-0d8781d3ba3d
+        - fddde793-4fce-4f6f-939d-0d8781d3ba3d
+        - fddde793-4fce-4f6f-939d-0d8781d3ba3d
+        - fddde793-4fce-4f6f-939d-0d8781d3ba3d
+        - fddde793-4fce-4f6f-939d-0d8781d3ba3d
+        - fddde793-4fce-4f6f-939d-0d8781d3ba3d
+    24d3c4d8-47ef-4574-9162-b11bdb3073f3:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 370
+        'y': 140
+      z: 2
+      parent: fddde793-4fce-4f6f-939d-0d8781d3ba3d
+      embeds: []
+    b9b95cb8-e623-40d8-9c19-b6c361c76e79:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: -120
+        'y': 150
+      z: 0
+      embeds: []
+    098c11b6-3f03-4c58-bd8a-be133ef73fe9:
+      size:
+        width: 140
+        height: 140
+      position:
+        x: -30
+        'y': 260
+      z: 0
+      embeds:
+        - 0073d26b-d5df-4cf1-81cd-f8dad8f8ece7
+    0073d26b-d5df-4cf1-81cd-f8dad8f8ece7:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 10
+        'y': 300
+      z: 1
+      parent: 098c11b6-3f03-4c58-bd8a-be133ef73fe9
+      embeds: []
+      iscontainedinside:
+        - 098c11b6-3f03-4c58-bd8a-be133ef73fe9
+        - 098c11b6-3f03-4c58-bd8a-be133ef73fe9
+        - 098c11b6-3f03-4c58-bd8a-be133ef73fe9
+        - 098c11b6-3f03-4c58-bd8a-be133ef73fe9
+        - 098c11b6-3f03-4c58-bd8a-be133ef73fe9
+        - 098c11b6-3f03-4c58-bd8a-be133ef73fe9
+        - 098c11b6-3f03-4c58-bd8a-be133ef73fe9
+        - 098c11b6-3f03-4c58-bd8a-be133ef73fe9
+        - 098c11b6-3f03-4c58-bd8a-be133ef73fe9
+        - 098c11b6-3f03-4c58-bd8a-be133ef73fe9
+        - 098c11b6-3f03-4c58-bd8a-be133ef73fe9
+      dependson:
+        - b9b95cb8-e623-40d8-9c19-b6c361c76e79
+    ed11ad6b-d0c4-4304-bcba-34b112fbb9bd:
+      size:
+        width: 140
+        height: 140
+      position:
+        x: 500
+        'y': 20
+      z: 0
+      embeds: []
+    793ef48f-2c1f-48a6-8877-3a44983adfff:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 230
+        'y': 240
+      z: 2
+      parent: fddde793-4fce-4f6f-939d-0d8781d3ba3d
+      embeds: []
+Mappings:
+  RegionMap:
+    us-east-1:
+      GUACAMI: ami-00ebca77849e4072b
+      W10AMI: ami-00b386e7d7fb65fdc
+      AAAMI: ami-0f6ee6ba26a44b0f7
+    us-east-2:
+      GUACAMI: ami-0ec5f7389fb01598b
+      W10AMI: ami-06540a8b6d12df1ea
+      AAAMI: ami-0a7fa328337f5020b
+    us-west-2:
+      GUACAMI: ami-06983885ac0469827
+      W10AMI: ami-002a07f4f7c694d11
+      AAAMI: ami-06448b8505d6cf29c
+#    us-west-1:
+#      GUACAMI: ami-034bffbf234a264e9
+#      W10AMI: ami-00a9d9ce4c6db5313
+#      AAAMI: ami-0dcc5cbe25120ea37
