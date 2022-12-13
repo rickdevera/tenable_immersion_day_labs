@@ -1,10 +1,10 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: AWS Jam CFN Template
+Description: AWS ImD CFN Template
 Parameters:
   ProjectName:
     Description: Name of the ProjectName
     Type: String
-    Default: awsjam
+    Default: awsImD
   Author:
     Description: Author (should be meta data)
     Type: String
@@ -16,7 +16,7 @@ Parameters:
   IAMRoles:
     Description: Version
     Type: String
-    Default: https://aws-jam-challenge-resources.s3.amazonaws.com/scan-and-remediate-ninja/aa_role.yaml
+    Default: https://aws-ImD-challenge-resources.s3.amazonaws.com/scan-and-remediate-ninja/aa_role.yaml
 Resources:
   GuacamoleInstance:
     Type: 'AWS::EC2::Instance'
@@ -33,13 +33,13 @@ Resources:
           GroupSet:
             - Ref: AwsPublicSecurityGroup
           SubnetId: 
-            Ref: AwsJamPublicSubnet
+            Ref: AwsImDPublicSubnet
           DeleteOnTermination: "true"
       Tags:
         - Key: Name
           Value: "GuacamoleJumpBox"
         - Key: purpose
-          Value: awsjams
+          Value: awsImDs
         - Key: Version
           Value: !Sub Version
         - Key: author
@@ -52,7 +52,7 @@ Resources:
  #   Properties:
  #     Description: Network Interface for Guacamole
  #     DeviceIndex: "0"
- #     SubnetId: !Ref AwsJamPublicSubnet
+ #     SubnetId: !Ref AwsImDPublicSubnet
   AwsPublicSecurityGroup:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
@@ -75,7 +75,7 @@ Resources:
           FromPort: 0
           ToPort: 0
           CidrIp: 10.0.0.0/8
-      VpcId: !Ref AWSJamVPC
+      VpcId: !Ref AWSImDVPC
     Metadata:
       'AWS::CloudFormation::Designer':
         id: 378900f8-dfab-4a33-9496-c1ef74c8516b
@@ -101,7 +101,7 @@ Resources:
           FromPort: 0
           ToPort: 0
           CidrIp: 0.0.0.0/0
-      VpcId: !Ref AWSJamVPC
+      VpcId: !Ref AWSImDVPC
   AwsInternalSecurityGroup:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
@@ -128,11 +128,11 @@ Resources:
           FromPort: 0
           ToPort: 0
           CidrIp: 10.1.0.0/16
-      VpcId: !Ref AWSJamVPC
+      VpcId: !Ref AWSImDVPC
       Tags:
         - Key: Name
           Value: "drift_demo"
-  AWSJamVPC:
+  AWSImDVPC:
     Type: 'AWS::EC2::VPC'
     Properties:
       CidrBlock: 10.1.0.0/16
@@ -141,10 +141,10 @@ Resources:
     Metadata:
       'AWS::CloudFormation::Designer':
         id: fddde793-4fce-4f6f-939d-0d8781d3ba3d
-  AWSJamInternalSubnet:
+  AWSImDInternalSubnet:
     Type: 'AWS::EC2::Subnet'
     Properties:
-      VpcId: !Ref AWSJamVPC
+      VpcId: !Ref AWSImDVPC
       CidrBlock: 10.1.2.0/24
       AvailabilityZone: !Select 
         - '0'
@@ -155,40 +155,40 @@ Resources:
     Metadata:
       'AWS::CloudFormation::Designer':
         id: d1663f3a-2a13-4f2e-bf43-8adbf683a5cc
-  AwsJamIGW:
+  AwsImDIGW:
     Type: 'AWS::EC2::InternetGateway'
     Properties: {}
     Metadata:
       'AWS::CloudFormation::Designer':
         id: b9b95cb8-e623-40d8-9c19-b6c361c76e79
-  AwsJamRouteTable:
+  AwsImDRouteTable:
     Type: 'AWS::EC2::RouteTable'
     Properties:
-      VpcId: !Ref AWSJamVPC
+      VpcId: !Ref AWSImDVPC
     Metadata:
       'AWS::CloudFormation::Designer':
         id: 098c11b6-3f03-4c58-bd8a-be133ef73fe9
-  AwsJamPublicRoute:
+  AwsImDPublicRoute:
     Type: 'AWS::EC2::Route'
     Properties:
-      RouteTableId: !Ref AwsJamRouteTable
+      RouteTableId: !Ref AwsImDRouteTable
       DestinationCidrBlock: 0.0.0.0/0
       GatewayId: 
-        Ref: AwsJamIGW
+        Ref: AwsImDIGW
     Metadata:
       'AWS::CloudFormation::Designer':
         id: 0073d26b-d5df-4cf1-81cd-f8dad8f8ece7
     DependsOn:
-      - AwsJamIGW
+      - AwsImDIGW
   EC2VPCG3CQWV:
     Type: 'AWS::EC2::VPCGatewayAttachment'
     Properties:
-      VpcId: !Ref AWSJamVPC
-      InternetGatewayId: !Ref AwsJamIGW
-  AwsJamPublicSubnet:
+      VpcId: !Ref AWSImDVPC
+      InternetGatewayId: !Ref AwsImDIGW
+  AwsImDPublicSubnet:
     Type: 'AWS::EC2::Subnet'
     Properties:
-      VpcId: !Ref AWSJamVPC
+      VpcId: !Ref AWSImDVPC
       CidrBlock: 10.1.1.0/24
     Metadata:
       'AWS::CloudFormation::Designer':
@@ -196,16 +196,16 @@ Resources:
 ##########
 #  Drift Demo Section
 ###########        
-  AWSJamDriftVPC:
+  AWSImDDriftVPC:
     Type: 'AWS::EC2::VPC'
     Properties:
       CidrBlock:  172.16.0.0/16
       EnableDnsSupport: true
       EnableDnsHostnames: true
-  AWSJamDriftSubnet:
+  AWSImDDriftSubnet:
     Type:  'AWS::EC2::Subnet'
     Properties:
-      VpcId: !Ref AWSJamDriftVPC
+      VpcId: !Ref AWSImDDriftVPC
       CidrBlock:  172.16.1.0/24
       AvailabilityZone: !Select 
         - '0'
@@ -239,7 +239,7 @@ Resources:
           FromPort: 0
           ToPort: 0
           CidrIp: 10.1.0.0/16
-      VpcId: !Ref AWSJamDriftVPC
+      VpcId: !Ref AWSImDDriftVPC
       Tags:
         - Key: Name
           Value: "drift_demo"
@@ -262,7 +262,7 @@ Resources:
            GroupSet:
              - Ref: AwsPublicSecurityGroup
            SubnetId: 
-            Ref: AwsJamPublicSubnet
+            Ref: AwsImDPublicSubnet
            DeleteOnTermination: "true"
       Tags:
         - Key: Name
@@ -282,7 +282,7 @@ Resources:
 #           GroupSet:
 #             - Ref: AwsInternalSecurityGroup
 #           SubnetId: 
-#            Ref: AwsJamPublicSubnet
+#            Ref: AwsImDPublicSubnet
 #           DeleteOnTermination: "true"
 #  GitlabsEC2:
 #    Type: 'AWS::EC2::Instance'
@@ -296,7 +296,7 @@ Resources:
 #           GroupSet:
 #             - Ref: AwsInternalSecurityGroup
 #           SubnetId: 
-#            Ref: AwsJamPublicSubnet
+#            Ref: AwsImDPublicSubnet
 #           DeleteOnTermination: "true"
   Windows10EC2:
     Type: 'AWS::EC2::Instance'
@@ -314,7 +314,7 @@ Resources:
            GroupSet:
              - Ref: AwsWindowsSecurityGroup
            SubnetId: 
-            Ref: AwsJamPublicSubnet
+            Ref: AwsImDPublicSubnet
            DeleteOnTermination: "true"
       Tags:
         - Key: Name
@@ -322,8 +322,8 @@ Resources:
   AwsRouteTabAssoc:
     Type:  AWS::EC2::SubnetRouteTableAssociation
     Properties:
-      RouteTableId: !Ref AwsJamRouteTable
-      SubnetId: !Ref AwsJamPublicSubnet
+      RouteTableId: !Ref AwsImDRouteTable
+      SubnetId: !Ref AwsImDPublicSubnet
 #  GitlabsS3Policy:
 #    Type:  AWS::IAM::Policy
 #    Properties:
