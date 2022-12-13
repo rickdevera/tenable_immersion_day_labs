@@ -48,6 +48,7 @@ __**Ensure your region is US East (N. Virginia)**__
 1.  Agentless Assessment / Vulnerability Management
 1.  Reports
 1.  CloudTrail Integration
+1.  On Prem Scanner
 1.  Cleanup 
 
 
