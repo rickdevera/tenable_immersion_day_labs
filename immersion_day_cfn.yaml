@@ -16,7 +16,7 @@ Parameters:
   IAMRoles:
     Description: Version
     Type: String
-    Default: https://aws-ImD-challenge-resources.s3.amazonaws.com/scan-and-remediate-ninja/aa_role.yaml
+    Default: https://tenable-training-resources.s3.amazonaws.com/aa_role.yaml
 Resources:
   GuacamoleInstance:
     Type: 'AWS::EC2::Instance'
