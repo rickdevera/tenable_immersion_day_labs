@@ -1,4 +1,7 @@
 # TENABLE IMMERSION DAY lab templates 
+<!---Foundation for 2023 Training/Demos, etc
+Ready to go.
+ --->
 
 Welcome to the lab Instruction!
 
@@ -38,17 +41,17 @@ These labs are designed to be completed in sequence, and the full set of instruc
 __**Ensure your region is US East (N. Virginia)**__
 
 ### Labs
-1.  Onboarding Workshop [onboarding.pdf](#onboarding_workshop)
+1.  Onboarding [onboarding.pdf](#onboarding_workshop)
 1.  PreCommmit Stage - IaC scan on Developer workstation 
-1.  PostCommit State - IaC scan on SourceCode
-1.  CI/CD scan - Integration with CI/CD pipeline
-1.  GitHub Actions
-1.  Terraform Run Actions
+1.  PostCommit Stage - IaC scan on SourceCode
+1.  CI/CD scan - Integration with CI/CD pipeline (***)
+1.  GitHub Actions (***)
+1.  Terraform Run Actions (***)
 1.  Cloud Scan/Drift Detection
 1.  Agentless Assessment / Vulnerability Management
 1.  Reports
-1.  CloudTrail Integration
-1.  On Prem Scanner
+1.  CloudTrail Integration (***)
+1.  On Prem Scanner (***)
 1.  Cleanup 
 
 
