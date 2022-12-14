@@ -1,0 +1,77 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Description: Tenable Cloud Security IAM role
+
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      -
+        Parameters:
+          - TenableRoleName
+          - ExternalID
+          - AllowVulnerabilityScanning
+          - VulnScanPolicyName
+
+Parameters:
+  TenableRoleName:
+    Type: String
+    Default: TenableTrustRole
+    Description: Please provide a name for the IAM role
+  ExternalID:
+    Type: String
+    Description: An alphanumeric string to be used as the ExternalId of the role. The Tenable container ID should be used in this parameter.
+  AllowVulnerabilityScanning:
+    Type: String
+    Description: Provides access to EBS APIs required for SaaS based vulnerability scanning.
+    Default: true
+  VulnScanPolicyName:
+    Type: String
+    Description: Name of the AWS IAM policy that grants access to EBS APIs for SaaS based vulnerability scanning.
+    Default: TenableVulnScan
+
+Conditions:
+  AllowVulnScan: !Equals
+    - !Ref AllowVulnerabilityScanning
+    - true
+
+Resources:
+  TenableRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Ref 'TenableRoleName'
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              AWS: !Sub "arn:aws:iam::012615275169:root"
+            Action: "sts:AssumeRole"
+            Condition:
+              StringEquals:
+                "sts:ExternalId": !Ref 'ExternalID'
+      ManagedPolicyArns: [
+        "arn:aws:iam::aws:policy/ReadOnlyAccess"
+      ]
+  VulnerabilityScanningPolicy:
+    Type: AWS::IAM::Policy
+    Condition: AllowVulnScan
+    Properties:
+      PolicyName: !Ref VulnScanPolicyName
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - 'ebs:Get*'
+              - 'ebs:List*'
+              - 'ec2:DescribeInstances'
+            Resource: '*'
+      Roles:
+        - !Ref TenableRole
+
+Outputs:
+  TenableRoleArn:
+    Description: AWS IAM role used by Tenable
+    Value: !GetAtt TenableRole.Arn
+    Export:
+      Name: !Join [ ":", [ !Ref "AWS::StackName", TenableRoleArn ] ]
