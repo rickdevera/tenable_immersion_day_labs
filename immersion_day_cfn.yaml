@@ -16,7 +16,7 @@ Parameters:
   IAMRoles:
     Description: Version
     Type: String
-    Default: https://tenable-training-resources.s3.amazonaws.com/aa_role.yaml
+    Default: https://tenable-training-resources.s3.amazonaws.com/immersionDay/aa_role.yaml
 Resources:
   GuacamoleInstance:
     Type: 'AWS::EC2::Instance'
@@ -526,10 +526,10 @@ Metadata:
       embeds: []
 Mappings:
   RegionMap:
-    us-east-1:
-      GUACAMI: ami-00ebca77849e4072b
-      W10AMI: ami-00b386e7d7fb65fdc
-      AAAMI: ami-0f6ee6ba26a44b0f7
+#    us-east-1:
+#      GUACAMI: ami-00ebca77849e4072b
+#      W10AMI: ami-00b386e7d7fb65fdc
+#      AAAMI: ami-0f6ee6ba26a44b0f7
     us-east-2:
       GUACAMI: ami-0ec5f7389fb01598b
       W10AMI: ami-06540a8b6d12df1ea
