@@ -11,10 +11,14 @@
 
 
 ### Prerequisites
-- Tenable.io account
-- Prior knowledge of GitHub - https://docs.github.com/en/get-started/quickstart/hello-world
-- Skills
-  - Prior knowledge of networking, and Microsoft Windows and browser
+- Skills:
+    - Prior knowledge of GitHub - https://docs.github.com/en/get-started/quickstart/hello-world
+    - Prior knowledge of networking, and Microsoft Windows and browser
+
+### Resources
+- Tenable.io account (assigned by instructor)
+- Credentials to Bastion Host and Windows Desktop
+	- https://tenable-training-resources.s3.amazonaws.com/immersionDay/remote_access_credentials.txt
 
 ### Tasks
 
