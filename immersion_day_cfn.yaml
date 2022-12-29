@@ -386,10 +386,10 @@ Outputs:
       - PublicIp
   GuacamoleUsername:
     Description:  Username for Bastion Host
-    Value: !Ref GuacamoleUsername
+    Value: !Ref GuacUsername
   GuacamolePassword:
     Description: Password for Bastion Host
-    Value:  !Ref GuacamolePassword
+    Value:  !Ref GuacPassword
 #  OnPremScannerId:
 #    Description: InstanceId of OnPremScanner
 #    Value: !Ref OnPremScannerEC2
