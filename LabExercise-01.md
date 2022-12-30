@@ -7,7 +7,7 @@
 - I can log into Tenable.io and navigate around the Tenable.cs dashboard
 - I can create a Tenable.cs project(s)
 - I can assign new policies to a project.
-- I can create a GitHub account
+- I can assign other policies to a project.
 
 
 ### Prerequisites
@@ -17,8 +17,7 @@
 
 ### Resources
 - Tenable.io account (assigned by instructor)
-- Credentials to Bastion Host and Windows Desktop
-	- https://tenable-training-resources.s3.amazonaws.com/immersionDay/remote_access_credentials.txt
+- Credentials to Bastion Host and Windows Desktop are in the Output Properties
 
 ### Tasks
 
@@ -29,7 +28,7 @@ a. Browser based (Guacamole) - login to the public ip: http://[GuacamolePublicIP
 
 b. Remote Desktop Protocol (RDP) – use Remote Desktop connection to login into the external IP using your preferred client (i.e. Microsoft Remote Desktop)
 
-You will need to navigate to the right page
+You will need to navigate to the sign-in page
 1. Use the Google Chrome to navigate to Tenable sign-in page. 
 	- There's bookmark in Chrome or shortcut on the Bastion host's Windows Desktop 
 	- Use Tenable.cs credentials found in **Output Properties** to sign in
@@ -38,17 +37,9 @@ You will need to navigate to the right page
 
 ##### Create a Project
 **A Project** is a group of any combination of connections, policies, cloud accounts:
-1.  From the Tenable.cs dashboard, click on the <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/scan-and-remediate-ninja/left_menu_plus.png" height="50" /> button on the top-left menu  
-2.  Click on Project
-	1. Provide a Name, then Continue
-	2. Choose AWS as the provider, then CREATE
-
-Alternatively, use the Getting Started Guide
-1.  From the Tenable.cs dashboard, click on the question mark icon<img src="https://aws-jam-challenge-resources.s3.amazonaws.com/scan-and-remediate-ninja/question_mark_getting_started.png" height="50" />
-2.  Click **Getting Started with Tenable.cs-> Add Project**
-3.  Click on Project
-	1. Provide a Name, then Continue
-	2. Choose AWS as the provider, then CREATE
+1.  From the Tenable.cs dashboard, click on the (+) button on the top-left menu  
+1.  Provide a ***Project Name*** (ie. **Lab01-Project**), then click ***Continue***
+1.  Choose **AWS** as the provider
 
 #### Retrieve the Policies
 From the Tenable Cloud Security Dashboard
@@ -56,16 +47,11 @@ From the Tenable Cloud Security Dashboard
 - Click on the Project you created	
 - On the pop-up, look for the Active Policy Group
 - Click on the ***pencil*** icon
-- Look for the 2 policies with boxes checked
 
-##### Create GitHub account
 
-1. Navigate to GitHub <a href="http://github.com" target="_blank" rel="nofollow noopener noreferrer">github.com</a>
-2. On the right top, click Signup to create a GitHub account
-3. Fill the information, and validate your email address
+### VALIDATION QUESTION
 
-##### Validation Question
-1.  What are the default policies associated with a New Project.
+1.  What are the default policies associated with a New Project?
 
-##### **Extra Credit** Adding an Industry Standard Compliance Policy
+#### **Extra** Adding an Industry Standard Compliance Policy
 1.  Create a new policy and assign ONLY <u>NIST 800-53 Best Practices for AWS</u> in the current policies
