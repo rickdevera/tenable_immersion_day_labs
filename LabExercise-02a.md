@@ -115,7 +115,8 @@ Reference:  https://docs.tenable.com/tenablecs/Content/GettingStarted/IaCScans.h
 
 ### VALIDATION QUESTION
 
-1.  Which two places do I verify open pull requests
+1.  What are two ways I can verify status of a pull request?
+2.  Is there a way to integrate pull request with a ticketing system? 
 
 
 
