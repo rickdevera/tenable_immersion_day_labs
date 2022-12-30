@@ -4,8 +4,10 @@
 
 ### Objective:
 
-- I can access integrate (add) a Github repository with a Tenable.cs project
-- I can clone a Github repository
+- I can create a Github account
+- I can create a Github connection
+- I can assign repositories to a Tenable.cs project
+- I can fork a Github repository
 - I can scan IaC
 - I can identify Misconfigurations
 - I can remediate code and create Pull Requests
@@ -18,45 +20,52 @@
 - Skills
   - Prior knowledge of networking, and Microsoft Windows and browser
 
-### Tasks
+## Tasks
 
-##### Integrate Repository (GitHub)
+### Integrate Repository (GitHub)
 
 The steps in this lab will use **Code repositories** to scan.
 Each step has sample source code needed from a repository
 
-##### Onboard GitHub Account
+### Onboard GitHub Account
 
-1.  Log into GitHub using your personal account or the credential you used to create in task 1
-2.  Go to Task 1 repository link above.
-3.  Click on **Fork->Create a new fork** button <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/scan-and-remediate-ninja/github_create_fork.png" height="150" alt="fork" />
-4.  Follow directions in Github  
-a.  Expand the **tenable-awsjam-cft-demo** repository.  
-b.  Select the **awsjam** branch  
-c.  Select the **cft** sub-directory  
+#### Create GitHub account
 
-##### Adding Repository to Project
+1. Navigate to GitHub <a href="http://github.com" target="_blank" rel="nofollow noopener noreferrer">github.com</a>
+1. On the right top, click Signup to create a GitHub account
+1. Fill the information, and validate your email address
 
-1.  On Tenable.cs, click on the question mark <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/scan-and-remediate-ninja/question_mark_getting_started.png" height="50" alt="gettting started" /> on the top right side of the dashboard browser.
-2.  Click **Getting Started with Tenable.cs ->Add Repositories**
-3.  Step through the wizard
-4.  Select **Version Control**, click **Continue**
-5.  Under <u>Connect to a version control provider</u>  
-  a.  Select **GitHub -> Connect**  
-  b.  Click **Continue**
-6.  Select a repository for each project.  
-  a.  Repeat the above steps for each project OR  
-  b.  Select Onboard all repositories, which will assign a <u>Default Github Repository</u>, this can be modified by by editing the Project)   
+1.  Log into GitHub created from **LabExercise-01** and use this account to create a new fork from your personal account or use the credentials used to create the GitHub account in  **LabExercise-01**
+1.  Go to  repository link above.
+1.  Create a new fork from https://github.com/RDev-TechAlliance/tenable-awsjam-demo.git 
+
+1.  Follow directions in Github
+    1. Expand the **tenable-awsjam-demo** repository
+    1. Select the **awsjam** branch  
+
+### Adding Repository to Project
+
+1.  On Tenable.cs, on the left menu bar, click on the (+)
+1.  Click on ***Connection->Repository***
+1.  Select **Version Control**, click **Continue**
+1.  Under <u>Connect to a version control provider</u>  
+  1.  Select **GitHub -> Connect** 
+  1.  If you have not logged in, enter the username and password of the GitHub account
+  1.  Click **Continue**
+1.  Select  all repositories listed.  Some of these repositories will be used in other labs.
+
+
   
 **Quick Reference:**  https://docs.tenable.com/tenablecs/Content/GettingStarted/ConnectingRepositories.htm
 
 
-#### Scan IaC
+### Scan IaC
 
 Reference:  https://docs.tenable.com/tenablecs/Content/GettingStarted/IaCScans.htm
 
 1.  On the Tenable.cs Dashboard, click on PROJECTS & CONNECTIONS   
 2.  Hover over **Run Scan** and click **IaC Scan**
+3.  
 
 #### View Findings/Misconfigurations
 
@@ -65,7 +74,7 @@ Reference:  https://docs.tenable.com/tenablecs/Content/GettingStarted/IaCScans.h
 ####  Create Pull Requests 
 
 1.  Select the *Failing Policy*. (Example:  <u>***Ensure Security Groups do not have unrestricted specific ports open - (SSH,22))***</u>
-2.  Click on the three-dots <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/scan-and-remediate-ninja/three-dot-button.png" height="80" />
+2.  Click on the vertical ellipses menu 
 3.  Select Create a pull request.
 **Reference:**  https://docs.tenable.com/tenablecs/Content/Analysis/Issues/Remediation/CreatePullRequest.htm
 
