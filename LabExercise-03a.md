@@ -96,8 +96,11 @@ and copy the ID for <b>DriftSecurityGroup</b>.
 
 13.  ReRun a Cloud scan
 14.  Verify Cloud Drift  
-a.  Upon completion of scan, be sure to *refresh* <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/scan-and-remediate-ninja/refresh.png" height="45" alt="refresh" />
+a.  Upon completion of scan, be sure to *refresh* 
 the screen to displaly the results after the cloud scan is completed.   
-b.  After refresh, how many ***Drifts*** were found?
 
 </p>
+
+### VALIDATION QUESTION
+
+1.  How may ***Drifts*** were found? 
