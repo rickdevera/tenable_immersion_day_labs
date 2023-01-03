@@ -425,14 +425,22 @@ Outputs:
   WindowsPassword:
     Description:  Windows Desktop Password
     Value:  !Ref WinDTPassword
-#  DriftSecurityGroup:
-#    Description:  Security Group for Drift Demo
-#    Value:  !Ref AwsDriftDemoSecurityGroup
-#  DriftSecurityGroupId:
-#    Description:  SecurityGroup Id for Drift Demo
-#    Value:  !GetAtt
-#      - AwsDriftDemoSecurityGroup
-#      - VpcId
+  DriftSecurityGroup:
+    Description:  Security Group for Drift Demo
+    Value:  !Ref AwsDriftDemoSecurityGroup
+  DriftSecurityGroupId:
+    Description:  SecurityGroup Id for Drift Demo
+    Value:  !GetAtt
+      - AwsDriftDemoSecurityGroup
+      - VpcId
+  AwsInternalSecurityGroup:
+    Description:  Security Group for Drift Demo
+    Value:  !Ref AwsInternalSecurityGroup
+  AwsInternalSecurityGroupId:
+    Description:  SecurityGroup Id for Drift Demo
+    Value:  !GetAtt
+      - AwsInternalSecurityGroup
+      - VpcId
 
 Metadata:
   'AWS::CloudFormation::Designer':

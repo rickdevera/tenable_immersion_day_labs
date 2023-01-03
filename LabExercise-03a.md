@@ -72,7 +72,7 @@ Follow the steps below
 1.  Choose **Public cloud** and click **Continue**
 1.  Enter the **Read Only Role ARN** form the values saved above
 1.  Enter the **External ID**, click on **Continue**
-1.  Select **security_group_scan** project.  
+1.  *Create or Select* the **security_group_scan** project.  
     1.  If the project is not defined, click on **Add a project**
     1.  Enter **security_group_scan**  
     1.  Click on the *check box* to select the project
@@ -80,55 +80,49 @@ Follow the steps below
 
 #### Perform AWS Cloud Run-time scan
 1.  From the Tenable.cs dashboard, select the **PROJECTS & CONNECTIONS** tab
-1.  Click on **Run scan->Cloud scan->Manage scan profiles->System default AWS cloud scan profile**
-
-### VALIDATION QUESTION ###
-1.  What scan options are enabled in the default policies?
-
-#### Scan a Security Group Profile
-1.  From the Tenable.cs dashboard, select the **PROJECTS & CONNECTIONS** tab
 1.  Click on **Run scan->Cloud scan->Manage scan profiles**
-1.  On the **System default AWS cloud scan profile** click on the vertical ellipse on the right side and select **Duplicate**
-1.  Clear all the selections, by clicking on **Select all**, then **Clear all** in the **Cloud config assessment options**.
-1.  In the search bar, type in **Security Group**
+1.  *Click* on **NEW SCAN PROFILE**
+1.  Under <u>Scan profile name</u>, type in **Security Group Profile**
+1.  In the search box, type in **Security Group**
 1.  Click on the ***check box*** for **Security Group**
-1.  Click Save
-1.  Run the Scan
+1.  Click the **Preview** button
+1.  Click on the **Create Scan Profile** button
+1.  Click on the vertical ellipse for <u>Security Group Profile</u> 
+1.  Click on the **Run Scan** button, for the <u>Security Group Profile</u>, and select **Use as Default Scan**
 
-1.  Click on **Findings** on the left menu.
+1.  Exit from the dialog box and Click on **Findings** on the left menu.
 1.  Click on **Misconfigurations**
 1.  Notice all the Security Group misconfigurations found for all the AWS Security Groups.
+1.  In the Search box, type in **SSH**
+1.  Scroll until an Impacted resource name <u>imdstack-AwsInternalSecurityGroup</u> is found.
 
-## VALIDATION QUESTION 
-1.  Which policy groups are applied to the misconfiguration?
-1.  How do you select a NIST policy as the baseline scan?
-
-
-### Testing for Drift
-
-1.  Create a new project, **cloud_to_cloud_drift_demo**
-1.  Under **PROJECTS & CONNECTIONS**, *click* on **Cloud Accounts**
-1.  Click on **Assign Project**
-1.  Select the project, **cloud_to_cloud_drift_demo**
-    
-#### Configure and Perform a Cloud-to-Cloud Drift
-
-
-1.  Click on **Set a Baseline** for the project **cloud_to_cloud_drift_demo**
-1.  ***Record*** the **Drift** count
-1. In the output properites, Copy the ID for <b>DriftSecurityGroup</b>.
-12.  On AWS console, search for the Security GroupId
-  a.  Modify the **Security Group->Inbound rules**.  
-  b.  Modify the rule with a the Source IP ( 10.0.0.0/16) to (0.0.0.0/0)  
+### Remediate Misconfigured Security Group
+1. In the Output Properites, Copy the **Security Group ID** (eg.  *sg-XXXXXXXXXXXXXXXXX*) for the *Key* **AwsInternalSecurityGroup**.
+1.  On AWS console, 
+    1.  Navigate to **VPC->Security Group**
+    1.  Search for the Security Group ID 
+    1.  Select the *Security Group* and Select **Action->Edit Inbound rules**.  
+    1.    Modify the ***SSH*** rule that contains  a the Source IP ( 0.0.0.0/0) to (10.1.1.0/24)  
   c.  Save the Rules.
 
-13.  ReRun a Cloud scan
-14.  Verify Cloud Drift  
-a.  Upon completion of scan, be sure to *refresh* 
-the screen to displaly the results after the cloud scan is completed.   
+1.  Rescan the project **security_group_scan**.
+1.  Go back to **Findings->Misconfigurations**
+1.  In the Search box, search for **SSH**
+1.  Scroll until an Impacted resource name <u>imdstack-AwsInternalSecurityGroup</u>
 
-</p>
+## VALIDATION QUESTION
 
-### VALIDATION QUESTION
+1.  Was <u>imdstack-AwsInternalSecurityGroup</u> found?
 
-1.  How may ***Drifts*** were found? 
+### Verify Drift
+
+1.  Under **PROJECTS & CONNECTIONS**,
+1.  Select the project, **security_group_scan**
+1.  Is there a *Drift* count?  
+1.  Click on the Drift value
+1.  Select the Resource Type: **Security Group**
+
+## VALIDATION QUESTION
+1.  Is the <u>imdstack-AwsInternalSecurityGroup</u> listed?
+
+## END OF LAB
