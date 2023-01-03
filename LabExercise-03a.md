@@ -22,15 +22,19 @@
 ### Tasks
 
 #### Retrieving Tenable Container Id
-These steps are needed for the lab. An alphanumeric string to be used as the ExternalId of the role. The Tenable container ID should be used in this parameter.
+These steps are needed for the lab. An *unique* alphanumeric string is used as the ExternalId of the role.   The Tenable Container UUID should be used in this parameter.
 
-  the unique ExternalId is a Cloud Formation parameter
-1.  To find the Tenable container ID (**ExternalId**) 
+**Reference:** In Tenable.io, navigate to Settings > License to get your container UUID. For more information, see <a href="https://docs.tenable.com/tenableio/Content/Platform/Settings/License/ViewLicenseInformation.htm" target="_blank" rel="nofollow noopener noreferrer"> View Information about Your Tenable.io Instance. </a>
+
+Follow the steps below
+
+1.  To find the Tenable Container UUID (**ExternalId**)
+
     1.  Log in to your Tenable.cs account
     1.  Go the the link <a href="https://cloud.tenable.com/tio/app.html#/settings/" target="_blank" rel="nofollow noopener noreferrer">ContainerID.</a>  <p>
     1.  Click on the **License** icon
     1.  Scroll down to the **Environment Information** container widget.    
-  d.  Copy the value of **CONTAINER ID**.   This value as the  **ExternalId** parameter   
+  d.  Copy the value of **CONTAINER ID**.   This value as the  **ExternalId** parameter.   
 
 
 #### Setup IAM Permission
@@ -40,7 +44,7 @@ These steps are needed for the lab. An alphanumeric string to be used as the Ext
 ##### Create and run the Cloud Formation stack
 
 1.  Navigate to AWS Console
-1.  Search for CloudFormation and select **CloudFormation**
+1.  Select the **CloudFormation** service
 1.  Click on **Create Stack->with New resources (standard)**
 	  - Select **Template is Ready** 
     - Select **Amazon S3 URL**
@@ -49,46 +53,70 @@ These steps are needed for the lab. An alphanumeric string to be used as the Ext
 1.  In the window **Specify stack details:  
     1.  Enter the Stack name:  <u>**tenable-awsjams-role**</u>
     1.  Enter the **External Id** (this is the *Tenable Container Id*)
+    1.  AllowVulnerabilityScanning should be set to **True** and will be used in a future lab to scan EC2 instances.
+1.  Click **Next**
+1.  *Accept* ***Acknowledgement*** and Click **Submit**
+
     
 1.  When completed, you will use the ARN and ExternalId Values to connect Tenable to AWS  
 
 #### Create a cloud connection on Tenable.cs
 
-  a.  Use the **ARN** value from *Outputs*  
-  b.  Use **ExternalId from *Parameters*</p><p>
+  a.  Save the **ARN** value from *Outputs* Properties  
+  b.  Save the **ExternalId from *Parameters*</p><p>
 
-1.  On Tenable.cs, create an AWS connection and use the values above.
-1.  Assign the AWS connection to **cloud_to_cloud_drift_demo**  
+1.  On Tenable.cs, create an AWS connection
+1.  From the tenable.cs dashboard, goto the the left menu and click on the (+) symbol
+1.  Click on *Connection->AWS connection*
+1.  Select Onboard AWS account, and click **Continue**
+1.  Choose **Public cloud** and click **Continue**
+1.  Enter the **Read Only Role ARN** form the values saved above
+1.  Enter the **External ID**, click on **Continue**
+1.  Select **security_group_scan** project.  
+    1.  If the project is not defined, click on **Add a project**
+    1.  Enter **security_group_scan**  
+    1.  Click on the *check box* to select the project
+1.  Click on **CONNECT CLOUD ACCOUNT**
 
-#### Setup Tenable.cs 
-#### Create a new project
-1.  From the Tenable.cs Dashboard
-    1.  Create a new Project. 
-	    * Name it differently like *cloud_to_cloud_drift_demo*
-	    * Choose AWS as the Cloud Provider
 #### Perform AWS Cloud Run-time scan
-Tenable.cs will scan the cloud in run-time (CSPM) and report the findings.  This may take up to 2-3 minutes.
+1.  From the Tenable.cs dashboard, select the **PROJECTS & CONNECTIONS** tab
+1.  Click on **Run scan->Cloud scan->Manage scan profiles->System default AWS cloud scan profile**
 
-1.  On AWS, Cloud Run-time Scan configuration  
-    a.  Configure and **Run the default cloud scan**
-    b.  When complete, refresh (refresh icon)
-the screen to displaly the results after the cloud scan is completed.
+### VALIDATION QUESTION ###
+1.  What scan options are enabled in the default policies?
+
+#### Scan a Security Group Profile
+1.  From the Tenable.cs dashboard, select the **PROJECTS & CONNECTIONS** tab
+1.  Click on **Run scan->Cloud scan->Manage scan profiles**
+1.  On the **System default AWS cloud scan profile** click on the vertical ellipse on the right side and select **Duplicate**
+1.  Clear all the selections, by clicking on **Select all**, then **Clear all** in the **Cloud config assessment options**.
+1.  In the search bar, type in **Security Group**
+1.  Click on the ***check box*** for **Security Group**
+1.  Click Save
+1.  Run the Scan
+
+1.  Click on **Findings** on the left menu.
+1.  Click on **Misconfigurations**
+1.  Notice all the Security Group misconfigurations found for all the AWS Security Groups.
+
+## VALIDATION QUESTION 
+1.  Which policy groups are applied to the misconfiguration?
+1.  How do you select a NIST policy as the baseline scan?
+
+
+### Testing for Drift
+
+1.  Create a new project, **cloud_to_cloud_drift_demo**
+1.  Under **PROJECTS & CONNECTIONS**, *click* on **Cloud Accounts**
+1.  Click on **Assign Project**
+1.  Select the project, **cloud_to_cloud_drift_demo**
     
 #### Configure and Perform a Cloud-to-Cloud Drift
 
-1.  Log into Tenable.cs
-2.  Go to the **Projects & Connections** tab
-3.  Click on **Run Scan->Cloud Scan->Manage** Scan Profiles
-4.  Click on **New scan profile** profile
-5.  Edit the New profile and be sure Security Group, EC2 Instance, and VPC is checked and *uncheck (disable)* **Enable Vulnerability Scan**
-6.  Set new profile as *Default*
-7.  Run a *Cloud Scan** for the new profile
-8.  Upon completed scan, goto Dashboard->Projects & Connections
-9.  Click on **Set a Baseline** for the project **cloud_to_cloud_drift_demo**
-10.  ***Record*** the **Drift** count
-11.  On the AWS Jams Dashboard, click on Output Properties
-    <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/scan-and-remediate-ninja/output_properties.png" height="120" alt="refresh" />  
-and copy the ID for <b>DriftSecurityGroup</b>.
+
+1.  Click on **Set a Baseline** for the project **cloud_to_cloud_drift_demo**
+1.  ***Record*** the **Drift** count
+1. In the output properites, Copy the ID for <b>DriftSecurityGroup</b>.
 12.  On AWS console, search for the Security GroupId
   a.  Modify the **Security Group->Inbound rules**.  
   b.  Modify the rule with a the Source IP ( 10.0.0.0/16) to (0.0.0.0/0)  

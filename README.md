@@ -33,25 +33,27 @@ If you want to run pre-requisite steps by yourself:
 
 ### What you'll do:
 
-These labs are designed to be completed in sequence, and the full set of instructions are documented below.  Read and follow along to complete the labs. Our lab instructor will give you a high-level overview of the labs and help answer any questions.  Don't worry if you get stuck, we provide hints along the way.
+These labs are designed to be completed in sequence, and the full set of instructions are documented below.  Read and follow along to complete the labs. Our lab instructor will give you a high-level overview of the labs and help answer any questions.  
 
 __**Ensure your region is US East (N. Virginia)**__
 
 ## Labs
-1.  Onboarding Lab *(pre-requisite for all labs)* 
-1.  IaC Scanning 
-    1.    Pre-Commit stage- IaC scan on Developer
-   workstation 
-    1.    Post-Commit stage - IaC scan with SCM Integration
-1.  CI/CD Integration (in work)
-    1.  *Integration Jenkins CI/CD*
-    1.  *GitHub Actions*
-    1.  *Terraform Run Actions*
-1.  Cloud Security Posture Management (CSPM)
-    1.  Cloud Scan/Drift Detection
-1.  **Agentless Assessment**
-1.  **Reports**
-1.  *Third-Party Integration* (future)
-1.  *On Prem Scanner* (future)
-1.  Cleanup 
+
+Lab Exercise 01 - [Onboarding](https://github.com/rickdevera/tenable_immersion_day/blob/main/LabExercise-01.md)
+
+Lab Exercise 02a - [IaC Scanning](https://github.com/rickdevera/tenable_immersion_day/blob/main/LabExercise-02a.md)
+
+Lab Exercise 03a - [Cloud Scanning](https://github.com/rickdevera/tenable_immersion_day/blob/main/LabExercise-03a.md)
+
+Lab Exercise 03b - [Drift Detection](https://github.com/rickdevera/tenable_immersion_day/blob/main/LabExercise-03b.md)
+
+Lab Exercise 04 - [Agentless Assessment](https://github.com/rickdevera/tenable_immersion_day/blob/main/LabExercise-04.md)
+
+Lab Exercise 05 - [Custom Policies](https://github.com/rickdevera/tenable_immersion_day/blob/main/LabExercise-05.md)
+
+Lab Exercise 06a - [Integrations] (future)
+1.  Jenkins CI/CD
+1.  GitHub Actions
+1.  Terraform Run Actions
+
 
