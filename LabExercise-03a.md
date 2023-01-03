@@ -121,8 +121,11 @@ Follow the steps below
 1.  Is there a *Drift* count?  
 1.  Click on the Drift value
 1.  Select the Resource Type: **Security Group**
+1.  Click on the Resource for <u>imdstack-AwsInternalSecurityGroup</u>
+1.  Scroll down the Drift and expand the view the details.
+
 
 ## VALIDATION QUESTION
-1.  Is the <u>imdstack-AwsInternalSecurityGroup</u> listed?
+1.  Can you verify the changes in the configuration?
 
 ## END OF LAB
