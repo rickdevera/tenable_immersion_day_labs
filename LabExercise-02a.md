@@ -19,6 +19,7 @@
 - Understand use cases of Infrastructure as Code (IaC)
 - Skills
   - Prior knowledge of networking, and Microsoft Windows and browser
+- Completed LabExercise-01.
 
 ## Tasks
 
@@ -53,7 +54,7 @@ If this has already been done, skip to the next section
 
 ### Adding Repository to Project
 
-1.  On Tenable.cs, on the left menu bar, click on the (+)
+1.  In Tenable.cs, on the left menu bar, click on the (+)
 1.  Click on ***Connection->Repository***
 1.  Select **Version Control**, click **Continue**
 1.  Under <u>Connect to a version control provider</u>  
@@ -72,18 +73,20 @@ Some repositories may be listed and can be selected, however they will not be us
 Reference:  https://docs.tenable.com/tenablecs/Content/GettingStarted/IaCScans.htm
 
 1.  On the Tenable.cs Dashboard, click on PROJECTS & CONNECTIONS   
-2.  Hover over **Run Scan** and click **IaC Scan**
-3.  
+2.  Hover over **Run Scan** and *Click* **IaC Scan**
 
 #### View Findings/Misconfigurations
 
-1.  On the Tenable.cs Dashboard, click on Findings from the left panel
+1.  On the Tenable.cs Dashboard, *Click* on **Findings** from the left panel
 1.  Select the Misconfigurations tab
 
 ####  Create Pull Requests 
 
-1.  Select the *Misconfigurations*. <u>***Ensure Security Groups do not have unrestricted specific ports open - (SSH,22))***</u>
-1.  Click on the vertical ellipses menu
+1.  Select the *Misconfigurations*.
+1.  Enter **SSH**, in the **Search Bar**.
+    1.  Verify the scan found a *misconfiguration* - <u>***Ensure Security Groups do not have unrestricted specific ports open - (SSH,22))***</u>
+1.  Click on  <u>***Ensure Security Groups do not have unrestricted specific ports open - (SSH,22))***</u>
+1.  Click on the vertical ellipses menu (right side)
 1.  Select Create a pull request.
 1.  In the text block **Secure Value**, enter a valid IP (***10.1.0.99/24 ***)  
 1.  Under **Branch**, Select the **AWSJAM** branch 

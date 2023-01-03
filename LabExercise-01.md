@@ -21,23 +21,25 @@
 
 ### Tasks
 
-#### To navigate to the environment
+#### Navigate to the environment
 There are two methods for remote access. Bastion Host credential is in the **Inventory** Section
 
 a. Browser based (Guacamole) - login to the public ip: http://[GuacamolePublicIP]:8080/guacamole
 
 b. Remote Desktop Protocol (RDP) – use Remote Desktop connection to login into the external IP using your preferred client (i.e. Microsoft Remote Desktop)
 
-You will need to navigate to the sign-in page
-1. Use the Google Chrome to navigate to Tenable sign-in page. 
-	- There's bookmark in Chrome or shortcut on the Bastion host's Windows Desktop 
-	- Use Tenable.cs credentials found in **Output Properties** to sign in
-2. You're in Vulnerability Management Overview page
-3. Using the drop down from the left top corner, scroll down and click to open **Cloud Security**
+1.  You will need to navigate to the sign-in page
+
+    1. Use the Google Chrome to navigate to Tenable sign-in page. 
+	    - There's bookmark in Chrome or shortcut on the Bastion host's Windows Desktop 
+    	- Use Tenable.cs credentials assigned by the class instructor.
+    2. You're in *Tenable.io Workspace* page
+    3. Click the icon to open **Tenable.cs**
 
 ##### Create a Project
 **A Project** is a group of any combination of connections, policies, cloud accounts:
 1.  From the Tenable.cs dashboard, click on the (+) button on the top-left menu  
+1.  Click on **Create a Project**
 1.  Provide a ***Project Name*** (ie. **Lab01-Project**), then click ***Continue***
 1.  Choose **AWS** as the provider
 
