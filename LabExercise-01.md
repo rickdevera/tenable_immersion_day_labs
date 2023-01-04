@@ -22,19 +22,21 @@
 ### Tasks
 
 #### Navigate to the environment
-There are two methods for remote access. Bastion Host credential is in the **Inventory** Section
+There are two methods for remote access. 
 
-a. Browser based (Guacamole) - login to the public ip: http://[GuacamolePublicIP]:8080/guacamole
+1. Browser based (Guacamole) - login to the public ip: http://[GuacamolePublicIP]:8080/guacamole
+        - Use this method if your desktop does not have access to an RDP client.  
+        - Sign in and select Windows Desktop
 
-b. Remote Desktop Protocol (RDP) – use Remote Desktop connection to login into the external IP using your preferred client (i.e. Microsoft Remote Desktop)
+2. Remote Desktop Protocol (RDP) – use Remote Desktop connection to login into the external IP using your preferred client (i.e. Microsoft Remote Desktop)
 
-1.  You will need to navigate to the sign-in page
+    1.  You will need to navigate to the sign-in page
 
-    1. Use the Google Chrome to navigate to Tenable sign-in page. 
-	    - There's bookmark in Chrome or shortcut on the Bastion host's Windows Desktop 
-    	- Use Tenable.cs credentials assigned by the class instructor.
-    2. You're in *Tenable.io Workspace* page
-    3. `Click` the icon to open **Tenable.cs**
+        1. Use the Google Chrome to navigate to Tenable sign-in page. 
+	        - There's bookmark in Chrome or shortcut on the Bastion host's Windows Desktop 
+    	    - Use Tenable.cs credentials assigned by the class instructor.
+        2. You're in *Tenable.io Workspace* page
+        3. `Click` the icon to open **Tenable.cs**
 
 ##### Create a Project
 **A Project** is a group of any combination of connections, policies, cloud accounts:
