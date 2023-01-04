@@ -5,30 +5,23 @@
 
 ### Objective:
 
-- I can access integrate (add) a Github repository with a Tenable.cs project
-- I can clone a Github repository
-- I can scan IaC
-- I can identify Misconfigurations
-- I can remediate code and create Pull Requests
-- I can setup Auto Remediation
+- I can create EBS snapshots
+- I can Setup Scan Profiles for Agentless Assessment
+- I can verify vulnerabities for EC2 instances
 
 ### Prerequisites
-- Tenable.io account
-- Prior knowledge of GitHub - https://docs.github.com/en/get-started/quickstart/hello-world
-- Understand use cases of Infrastructure as Code (IaC)
-- Skills
-  - Prior knowledge of networking, and Microsoft Windows and browser
+
 
 ### Tasks
 
 #### 1.  Preparation
 
-1.  On the AWS console, create an snapshot for the instance volume   
-  a.  Go to the **EC2 Dashboard**    
-  b.  Go to **Elastic Block Store->Snapshot**  
-  c.  Click on **Create snapshot**  
+1.  On the AWS console
+    1.  Go to the **EC2 Dashboard**, validate Instance Name **AA_EC2_Demo**  exists
+    1.  Go to **Elastic Block Store->Snapshot**  
+    1.  Click on **Create snapshot**  
   d.  Click on the **Instance** radio button      
-  e.  Click on the ***Instance ID*** pulldown menu 
+  e.  Click on the ***Instance ID*** dropdown menu, search for **AA_EC2_Demo** 
   f.  Select the Instance for **AA_EC2_Demo**
   g.  Enter a description:  **Agentless Demo EC2 Snapshot**   
   h.  Click on **Create snapshot**    
@@ -37,35 +30,59 @@
 
 
 #### Setup a Project 
-3.  In Tenable.cs, create a project  
-a.  Click on the (+) button on the left menu  
-b.  Enter the project name: **agentless_assessment_awsjam_demo**  
-c.  Select **AWS**  
-d.  Click on **Create**
+1.  In Tenable.cs, create a project  
+    1.  Click on the (+) button on the left menu  
+    1.  Enter the project name: **AA_demo**  
+    1.  Select **AWS**  
+    1.  Click on **Create**
 
 #### Scan the project
 
 This will scan the snapshot of the EC2 instance
 
-4.  Associate the Project **agentless_assessment_awsjam_demo** with a cloud account  
-  a.  Click and open the project:  **agentless_assessment_awsjam_demo**  
-  b.  Click on the pencil icon for Cloud Accounts  
-  c.  Select and Save the cloud account that was created in Task 3.  (ie *arn:aws:iam::*:role/TenableTrustRole*)  
-  d.  From the Tenable.cs Dashboard, Click on **HOME-PROJECTS & CONNECTIONS**
-5.  Create a scan profile for **agentless_assessment_awsjam_demo**.  
-  a.  Select the project **agentless_assessment_awsjam_demo**, click on **Run Scan->Cloud Scan->Manage Scan Profiles**.    
-  b.  Click on **New Scan Profile** button.  
-  c.  Enter an <u>Scan Profile name:</u>  **AA_profile_demo**  
-  d.   Expand (**down arrow/caret** on the right of the options) to and enable **Compute->EC2 Instance**  
-  e.  Expand and enable **Security, Identify and Compliance->Security Group**  
-  f.  For **Enable Vulnerability Scan**, click and set Toggle switch to *ON*  
-  g.  Click on **Create Scan Profile**
-  h.  Click on **Run Scan->AA_profile_demo**
 
-Note:  Scan may take several minutes to complete.  
+1.  From the Tenable.cs Dashboard, Click on **PROJECTS & CONNECTIONS** tab
+1.  Click on the **Projects** icon.
+1.  Click on the **AA_demo** project.
+1.  Click on the *pencil* icon for <u>Cloud accounts</u>
+1.  Enable the *cloud account* (created from LabExercise-03a)
+1.  Click the **Save** button 
 
-6.  Find the Plugin ID associated with reported vulnerabilities  
-  a.  Click to **Findings->Vulnerabilities** to display vulnerabilities found.    
-  b.  Click on **Filters** and pick the project (**agentless_assessment_awsjam_demo**)  
-  c.  Click on the **Vulnerability Name**  (See image)
-<img src="https://aws-jam-challenge-resources.s3.amazonaws.com/scan-and-remediate-ninja/plug-in.png" height="450" />  
+1.  On the main dashboard, create a scan profile for **AA_demo**.  
+    1.  For the project **AA_demo**, click on **Run Scan->Cloud Scan->Manage Scan Profiles**.    
+    1.  Click on **New Scan Profile** button.  
+    1.  Enter an <u>Scan Profile name:</u>  **AA_profile_demo**  
+    1.  Search for EC2 Instance, and *click* the <u>check-box</u> for EC2 Instance.
+    1.  Scroll down to <u>Step 2</u> and turn on **Enable Vulnerability Scan**
+    1.  *Click* on the **Preview** button to verify the profile configuration.
+    1.  *Click* on **Create Scan Profile** button
+    1.  *Click* on  the vertical ellipses for the profile just created and select **Use as default scan**
+
+1.  Scan for vulnerabilities
+    1.  *Click* on **Run scan->Cloud scan->Run default scan profile**
+    1.  Depending on the size and how many vulnerability scan are in progress, this may take several minutes to complete.
+    1.  *Refresh* the main dashboard display
+### View vulnerabilties
+1.  From the main dashboard, click on the **Vulnerabilties** tab.
+1.  Note the vulnerabilties associated with this instance.
+
+### View from Tenable.io Dashboard
+
+1.  Goto http://cloud.tanble.com
+1.  Select top-left pulldown **Explore->Findings**
+1.  *Click* on the **funnel icon**
+1.  *Click* on **Select Filters**
+1.  *Search* for **Scan Origin** and *Enable* the **check-box**
+1.  *Exit* the dialog box
+1.  *Scroll* down to the **Scan Origin** section and *enable* the *checkbox* for **Agentless Assessment**
+1.  *Click* **Apply**
+
+### Search for Asset
+
+1.  Find the <u>Instance ID</u> for a scanned EC2 instance
+1.  From **Explore->Findings** display, *enter* the *Instance ID* in the search field.
+1.  Verify Vulnerable Plug-ins found.
+
+## VALIDATION QUESTION
+
+1.  Will AA scan for instances without a snapshot?
