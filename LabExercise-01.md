@@ -11,9 +11,9 @@
 
 
 ### Prerequisites
-- Skills:
-    - Prior knowledge of GitHub - https://docs.github.com/en/get-started/quickstart/hello-world
-    - Prior knowledge of networking, and Microsoft Windows and browser
+-  Skills:
+    - [ ] Prior knowledge of GitHub - https://docs.github.com/en/get-started/quickstart/hello-world
+    - [ ] Prior knowledge of networking, and Microsoft Windows and browser
 
 ### Resources
 - Tenable.io account (assigned by instructor)
@@ -34,21 +34,21 @@ b. Remote Desktop Protocol (RDP) – use Remote Desktop connection to login into
 	    - There's bookmark in Chrome or shortcut on the Bastion host's Windows Desktop 
     	- Use Tenable.cs credentials assigned by the class instructor.
     2. You're in *Tenable.io Workspace* page
-    3. Click the icon to open **Tenable.cs**
+    3. `Click` the icon to open **Tenable.cs**
 
 ##### Create a Project
 **A Project** is a group of any combination of connections, policies, cloud accounts:
 1.  From the Tenable.cs dashboard, click on the (+) button on the top-left menu  
-1.  Click on **Create a Project**
+1.  `Click` on **Create a Project**
 1.  Provide a ***Project Name*** (ie. **Lab01-Project**), then click ***Continue***
-1.  Choose **AWS** as the provider
+1.  `Choose` **AWS** as the provider
 
 #### Retrieve the Policies
 From the Tenable Cloud Security Dashboard
-- Click on the **Projects and Connections** tab
-- Click on the Project you created	
+- `Click` on the **Projects and Connections** tab
+- `Click` on the Project you created	
 - On the pop-up, look for the Active Policy Group
-- Click on the ***pencil*** icon
+- `Click` on the ***pencil*** icon
 
 
 ### VALIDATION QUESTION
