@@ -11,29 +11,48 @@
 
 ### Prerequisites
 - Tenable.io account
-- Prior knowledge of GitHub - https://docs.github.com/en/get-started/quickstart/hello-world
-- Understand use cases of Infrastructure as Code (IaC)
 - Skills
   - Prior knowledge of networking, and Microsoft Windows and browser
+- Completed Labs 1 and 2
 
 ### Tasks
 
   ____
 
-#### Export Compliance Report  
+#### Compliance Report Dashboard
 
 
-  1.  On Tenable.cs Dashboard left menu, hover over the Report icons in the left menu and click the icon for Reports 
-    -  **Compliance Report** dashboard should be displayed
-**Note: you can filter by, cloud provider, benchmarks, projects, cloud accounts and repository
-  to produce specific reports.* 
+  1.  On Tenable.cs Dashboard left menu, `click` the icon for Reports 
+  1.  Under *Projects*, `select` the project defined in <u>**Lab 02 (eg.  iac_demo_project)**</u>
+  1.  `Select` **Filters**
+      1.  `Enable` filter on 
+          - Policy Status:  **Non-Compliant**
+          - Severity:  **High**
+  1.  `Expand` the control *Infrastructure Security*
+  1.  `Click` on the *Policy Name* **Ensure Security Groups do not have unrestricted specific ports open - (SSH,22)**
+  
+  ## VALIDATION QUESTION
+  1.  What is the recommended remediation for the violated policy?
+  1.  How would you go about remediating the violated policy?  
+
+
+  ### Create a Custom Policy Group
+
+1.  On the Tenable.cs dashboard, *Create* a new **Custom Policy**
+    1.  `Click` on the left menu (+) and select **Custom Policy**
+    1.  `Select` **Add Policy Group**
+    1.  `
+
+
+  1.  Under the Benchmark section, `select` the pulldown menu and `search` for **NIST 800-53**
+
   
 #### Filter Benchmarks  
   
-  2.  Select *NIST 800-53*  
+  2.  `Select` **NIST 800-53**  
   3.  Notice the Changes when compliance benchmark  is selected  
   4.  Generate or export a Compliance Report   
-  -  Click on **Export->CSV** 
+  -  `Click` on **Export->CSV** 
   5.  Select **Detail Report**  
 
 #### Create a Custom Policy Group 

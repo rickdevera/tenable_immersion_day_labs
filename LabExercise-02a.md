@@ -49,7 +49,7 @@ If this has already been done, skip to the next section
 #### Create a Project
 
 1.  Create a new project
-    - Name:   Lab02-Project
+    - Name:   iac_demo_project
     - Provider:  AWS
 
 ### Adding Repository to Project
