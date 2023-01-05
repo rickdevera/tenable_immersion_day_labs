@@ -19,21 +19,34 @@
 
   ____
 
+#### Create a Project
+
+  1.  On the Tenable.cs Dashboard, create a new project - **custom_policy_project**
+  1.  `Select` the provider **AWS**
+  1.  `Click` on the project **custom_policy_project**
+  1.  `Click` on the **Repositories** *pencil* icon
+  1.  `Select` the repository create from the prior labs (eg.  *tenable-awsjam-demo.git*)
+  1.  `Save` the configuration
+
+
 #### Compliance Report Dashboard
 
 
   1.  On Tenable.cs Dashboard left menu, `click` the icon for Reports 
-  1.  Under *Projects*, `select` the project defined in <u>**Lab 02 (eg.  iac_demo_project)**</u>
+  1.  Under the *Projects* filter, `select` the project **custom_policy_project**</u>
   1.  `Select` **Filters**
       1.  `Enable` filter on 
           - Policy Status:  **Non-Compliant**
           - Severity:  **High**
-  1.  `Expand` the control *Infrastructure Security*
-  1.  `Click` on the *Policy Name* **Ensure Security Groups do not have unrestricted specific ports open - (SSH,22)**
+  1.  `Expand` the control *Security Group*
+  1.  `Click` **APPLY**
+  1.  `Expand` **Infrastructure Security**
   
   ## VALIDATION QUESTION
-  1.  What is the recommended remediation for the violated policy?
-  1.  How would you go about remediating the violated policy?  
+  1.  What is the compliance coverage for Infrastructure Security?
+  1.  HOw many High severity, non-compliant policies were found?
+  1.  What is the compliance coverage for the Project we selected?
+
 
 
   ### Create a Custom Policy Group
@@ -41,34 +54,38 @@
 1.  On the Tenable.cs dashboard, *Create* a new **Custom Policy**
     1.  `Click` on the left menu (+) and select **Custom Policy**
     1.  `Select` **Add Policy Group**
-    1.  `
+    1.  Filter on the following:
+        1.  Severity: High
+        1.  Provider:  AWS
+        1.  Category:  Infrastructure Security
+    1.  `Enable` **ALL** policies
+    1.  `Select` **Continue**
+    1.  `Type` in the Policy Group Name: **custom_Infrastructure_Security_policy_group**
+    1.  `Select` **AWS**
+    1.  `Select` **Enforce**
+    1.  `Select` the **DONE** button to complete group creation.
 
+## VALIDATION QUESTION
+1.  Can you create a custom policy group that contains a subset of policies from each Benchmark?
 
-  1.  Under the Benchmark section, `select` the pulldown menu and `search` for **NIST 800-53**
+### Assign Custom Policy to Project
 
-  
-#### Filter Benchmarks  
-  
-  2.  `Select` **NIST 800-53**  
-  3.  Notice the Changes when compliance benchmark  is selected  
-  4.  Generate or export a Compliance Report   
-  -  `Click` on **Export->CSV** 
-  5.  Select **Detail Report**  
+1.  On Tenable.cs dashboard, `click` on the project
+1.  `Click` on pencil icon for *Active policy groups*
+1.  `Deactive/disable` the current policy group selections
+1.  `Search`  for **custom_Infrastructure**
+1.  `Enable` **custom_Infrastructure_Security_policy_group**
+1.  `Click` **SAVE**
+1.  `Verify` *Active policy groups* updated with new custom policy
+1.  `Click` on **Run scan->IaC scan** for the <u>custom_policy_project</u>
 
-#### Create a Custom Policy Group 
-1.  Create custom policy group
-  a.  Policy Name:  **awsjam_custom_policy_group**
-2.  Search for **Security Groups** and *Enable* the following <u>rules:</u>  
-  a.  **Ensure Security Groups do not have unrestricted specific ports open - (SSH,22)**  
-  b.  **Ensure no security groups allow ingress from 0.0.0.0/0 to ALL ports and protocols**  
-  c.  **Ensure Security Groups do not have unrestricted specific ports open - (HTTP,8080)**  
-3.  Save/Create Policy Group
+## VALIDATION QUESTION
 
-#### Modify Project
+1.  Can custom policy group be created to build a customized policy that contains policies from each Industry Benchmark?
 
-1.  Setup the project, **tenable_awsjam_cft_demo** so **awsjam_custom_policy_group** is the **ONLY** <u>Active policy group*</u> defined.
-2.  Note the current value of **Failing policies** for **tenable_awsjam_cft_demo**.
-3.  Re-run the IaC scan
-3.  Note the new value only shows **Security Groups** defined for the policy group - **awsjam_custom_policy_group**.
-_____
-</p>
+### Optional Challenge Task - Remediate Misconfigured Code and verify Compliance changes 
+
+1.  Create a pull request 
+1.  Merge repository
+1.  Validate compliance changes
+

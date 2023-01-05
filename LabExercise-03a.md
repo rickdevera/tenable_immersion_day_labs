@@ -8,11 +8,11 @@
 1.  I can onboard AWS account and connect to Tenable.io 
 1.  I can create an AWS IAM role and policy
 1.  I can understand how to run a real-time (cloud) scan
-1.  I can understand setup Cloud-to-Cloud Drift detection
-
+1.  I can understand setup Cloud-to-Cloud Drift
+<!--
 1.  I can understand how to scan a Terraform scan
 1.  I can understand how to Code-to-Cloud Drift detection
-
+-->
 ### Prerequisites
 - Familiar with Tenable.cs Dashboard 
 - Familiar with AWS Cloud Networking concepts
@@ -107,7 +107,7 @@ Follow the steps below
 
 1.  Rescan the project **security_group_scan**.
 1.  Go back to **Findings->Misconfigurations**
-1.  In the Search box, search for **SSH**
+1.  In the Search box, search for **SSH** or **22**
 1.  Scroll until an Impacted resource name <u>imdstack-AwsInternalSecurityGroup</u>
 
 ## VALIDATION QUESTION
