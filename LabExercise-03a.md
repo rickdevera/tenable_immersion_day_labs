@@ -22,14 +22,14 @@
 ### Tasks
 
 #### Retrieving Tenable Container Id
-These steps are needed for the lab. An *unique* alphanumeric string is used as the ExternalId of the role.   The Tenable Container UUID should be used in this parameter.
+These steps are needed for the lab. A *unique* alphanumeric string used as the ExternalId of the role.   The Tenable Container UUID should be used in this parameter.
 
 Follow the steps below
 
 1.  To find the Tenable Container UUID (**ExternalId**)
 
     1.  Log in to your Tenable.cs account
-    1.  Click on the following link <a href="https://cloud.tenable.com/tio/app.html#/settings/" target="_blank" rel="nofollow noopener noreferrer">ContainerID.</a>  <p>
+    1.  Click on the following link: <a href="https://cloud.tenable.com/tio/app.html#/settings/" target="_blank" rel="nofollow noopener noreferrer">ContainerID.</a>  <p>
     1.  Click on the **License** icon
     1.  Scroll down to the **Environment Information** container widget.    
   d.  Copy the value of **CONTAINER ID**.   This value is the  **ExternalId** parameter.   

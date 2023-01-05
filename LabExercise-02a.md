@@ -63,6 +63,9 @@ If this has already been done, skip to the next section
   1.  Click **Continue**
 1.  Select the repository **tenable-awsjam-demo**
 Some repositories may be listed and can be selected, however they will not be used in this lab.
+1.  `Select` **Continue**
+1.  `Assign` (enable) **iac_demo_project** <sub>(or projected created for this lab)</sub>
+1.  `Select` **Connect*
 
 
 **Quick Reference:**  https://docs.tenable.com/tenablecs/Content/GettingStarted/ConnectingRepositories.htm
@@ -101,17 +104,17 @@ Reference:  https://docs.tenable.com/tenablecs/Content/GettingStarted/IaCScans.h
 1.  Log into your GitHub account
 1.  Go to the repository ***tenable-awsjam-demo***
 1.  Click on the **Pull Request** tab
-1.  Verify files changed
+1.  Verify changes, `click` on the **Files changed**
+    1.  Note: changes from red to green
 1.  Click on ***Merge Pull Request*, to submit the changes
+1.  `Verify`  the changes have been made.
 
 
 ####  Verify Changes
 
-1.  Select the Project created in the section above and run an IaC scan
+1.  In Tenable.cs dashboard, Select the Project created in the section above and run an IaC scan
 1.  Verify the Misconfigured resource is no longer displayed.
-1.  In Tenable.cs, select **Remediate** on the left menu
-1.  Select Fix PRs. (Remediate -> Fix PRs)
-### Optional:  Setup Auto Remediation
+
 
 **Reference**  https://docs.tenable.com/tenablecs/Content/Analysis/Issues/Remediation/Auto-Remediation.htm?Highlight=pull%20requests   
 

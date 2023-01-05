@@ -6,8 +6,8 @@
 - I can access the bastion host (jumpbox) remotely to access Tenable and AWS.
 - I can log into Tenable.io and navigate around the Tenable.cs dashboard
 - I can create a Tenable.cs project(s)
-- I can assign new policies to a project.
-- I can assign other policies to a project.
+- I can identify policies assigned #to a project.
+
 
 
 ### Prerequisites
@@ -57,5 +57,4 @@ From the Tenable Cloud Security Dashboard
 
 1.  What are the default policies associated with a New Project?
 
-#### **Extra** Adding an Industry Standard Compliance Policy
-1.  Create a new policy and assign ONLY <u>NIST 800-53 Best Practices for AWS</u> in the current policies
+## END OF LAB
