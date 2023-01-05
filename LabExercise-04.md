@@ -86,3 +86,7 @@ This will scan the snapshot of the EC2 instance
 ## VALIDATION QUESTION
 
 1.  Will AA scan for instances without a snapshot?
+
+## End of Lab 
+
+[Return to README](https://github.com/rickdevera/tenable_immersion_day/blob/main/README.md)

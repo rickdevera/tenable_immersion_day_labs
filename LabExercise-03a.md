@@ -128,3 +128,5 @@ Follow the steps below
 1.  Can you verify the changes in the configuration?
 
 ## END OF LAB
+
+[Return to README](https://github.com/rickdevera/tenable_immersion_day/blob/main/README.md)
