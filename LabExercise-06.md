@@ -4,16 +4,16 @@
 
 ### Objective:
 
-- I can run 
-- I can Create a Custom Policy Group
-- I can Add Custom Policy Group to Project
-- I can Scan custom policy  
+- I can integrate Tenable.cs with Visual Code Studio
+- I can run IaC scans on a local desktop (develop workstation)
+- I can run IaC scan across using the CLI
 
 ### Prerequisites
 - Tenable.io account
 - Skills
   - Prior knowledge of networking, and Microsoft Windows and browser
 - Windows Desktop
+- Familiarization of Visual Studio Code
 - Completed Labs 1 and 2
 ____
 
