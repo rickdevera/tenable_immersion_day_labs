@@ -52,7 +52,9 @@ Lab Exercise 04 - [Agentless Assessment](https://github.com/rickdevera/tenable_i
 
 Lab Exercise 05 - [Custom Policies](https://github.com/rickdevera/tenable_immersion_day/blob/main/LabExercise-05.md)
 
-<!---Lab Exercise 06a - [Integrations] (future)
+Lab Exercise 06 (optional) - [Integration with VS code and CLI commands](https://github.com/rickdevera/tenable_immersion_day/blob/main/LabExercise-06.md)
+
+<!---Lab Exercise  - [Integrations] (future)
 1.  Jenkins CI/CD
 1.  GitHub Actions
 1.  Terraform Run Actions
