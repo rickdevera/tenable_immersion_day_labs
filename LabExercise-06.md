@@ -120,4 +120,4 @@ The a copy of the repository is now on the local computer.
 
 
 
-[Return to README](https://github.com/rickdevera/tenable_immersion_day/blob/main/README.md)
+[Return to Wiki Home Page](https://github.com/rickdevera/tenable_immersion_day_labs/wiki)

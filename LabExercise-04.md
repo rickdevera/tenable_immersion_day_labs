@@ -89,4 +89,4 @@ This will scan the snapshot of the EC2 instance
 
 ## End of Lab 
 
-[Return to README](https://github.com/rickdevera/tenable_immersion_day/blob/main/README.md)
+[Return to Wiki Home Page](https://github.com/rickdevera/tenable_immersion_day_labs/wiki)
