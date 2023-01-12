@@ -59,4 +59,4 @@ From the Tenable Cloud Security Dashboard
 
 ## END OF LAB
 
-[Return to README](https://github.com/rickdevera/tenable_immersion_day/blob/main/README.md)
+[[Return to Wiki Home Page|Home]]
