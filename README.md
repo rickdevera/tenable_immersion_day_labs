@@ -39,20 +39,20 @@ __**Ensure your region is US East (N. Virginia)**__
 
 ## Labs
 
-Lab Exercise 01 - [Onboarding](https://github.com/rickdevera/tenable_immersion_day/blob/main/LabExercise-01.md)
+Lab Exercise 01 - [Onboarding](https://github.com/rickdevera/tenable_immersion_day_labs/blob/main/LabExercise-01.md)
 
-Lab Exercise 02a - [IaC Scanning](https://github.com/rickdevera/tenable_immersion_day/blob/main/LabExercise-02a.md)
+Lab Exercise 02a - [IaC Scanning](https://github.com/rickdevera/tenable_immersion_day_labs/blob/main/LabExercise-02a.md)
 
-Lab Exercise 03a - [Cloud Scanning](https://github.com/rickdevera/tenable_immersion_day/blob/main/LabExercise-03a.md)
+Lab Exercise 03a - [Cloud Scanning](https://github.com/rickdevera/tenable_immersion_day_labs/blob/main/LabExercise-03a.md)
 
-<!---Lab Exercise 03b - [Drift Detection](https://github.com/rickdevera/tenable_immersion_day/blob/main/LabExercise-03b.md)
+<!---Lab Exercise 03b - [Drift Detection](https://github.com/rickdevera/tenable_immersion_day_labs/blob/main/LabExercise-03b.md)
 --->
 
-Lab Exercise 04 - [Agentless Assessment](https://github.com/rickdevera/tenable_immersion_day/blob/main/LabExercise-04.md)
+Lab Exercise 04 - [Agentless Assessment](https://github.com/rickdevera/tenable_immersion_day_labs/blob/main/LabExercise-04.md)
 
-Lab Exercise 05 - [Custom Policies](https://github.com/rickdevera/tenable_immersion_day/blob/main/LabExercise-05.md)
+Lab Exercise 05 - [Custom Policies](https://github.com/rickdevera/tenable_immersion_day_labs/blob/main/LabExercise-05.md)
 
-Lab Exercise 06 (optional) - [Integration with VS code and CLI commands](https://github.com/rickdevera/tenable_immersion_day/blob/main/LabExercise-06.md)
+Lab Exercise 06 (optional) - [Integration with VS code and CLI commands](https://github.com/rickdevera/tenable_immersion_day_labs/blob/main/LabExercise-06.md)
 
 <!---Lab Exercise  - [Integrations] (future)
 1.  Jenkins CI/CD
