@@ -24,14 +24,10 @@
 ### Tasks
 
 
-#### Needed if running Lab06.  Skip to the next seciont
+#### Needed if running Lab06.  Skip to the next Section
 There are two methods for remote access. 
 
-1. Browser based (Guacamole) - login to the public ip: http://[GuacamolePublicIP]:8080/guacamole
-        - Use this method if your desktop does not have access to an RDP client.  
-        - Sign in and select Windows Desktop
-
-2. Remote Desktop Protocol (RDP) – use Remote Desktop connection to login into the external IP using your preferred client (i.e. Microsoft Remote Desktop)
+1. Remote Desktop Protocol (RDP) – use Remote Desktop connection to login into the external IP using your preferred client (i.e. Microsoft Remote Desktop)
 
     1.  You will need to navigate to the sign-in page
 
@@ -41,7 +37,7 @@ There are two methods for remote access.
         2. You're in *Tenable.io Workspace* page
         3. `Click` the icon to open **Tenable.cs**
 
-#
+<!--#
 #####  Create an API key 
 
 The API key is used as an authetication key to verify validation questions using Tenable's REST API.  More information in using Tenable API keys can be found at https://developer.tenable.com/ (Search for the Cloud Security section for API examples)
@@ -69,7 +65,7 @@ A cloud formation template will be used to store the API key in secrets manager.
 1.  `Click` **Next**,
 1.  `Click` **Submit**,
 1.  `Click` the refresh button to verify the status **CREATE_COMPLETE**.
-
+-->
 
 ##### Create a Project
 **A Project** is a group of any combination of connections, policies, cloud accounts:
@@ -79,16 +75,21 @@ A cloud formation template will be used to store the API key in secrets manager.
 1.  `Choose` **AWS** as the provider.
 
 ##### Verify the Assigned Policies
+This dialog box will provide the Project UUId and the properties for the project.
+
 From the Tenable Cloud Security Dashboard
-- `Click` on the **Projects and Connections** tab,
-- `Click` on the Project you created	,
-- On the pop-up, look for the Active Policy Group,
-- `Click` on the ***pencil*** icon.
+1.  `Click` on the **Projects and Connections** tab,
+1.  `Click` on the Project you created	,
+1.  On the pop-up, look for the Active Policy Group,
+1. `Click` on the ***pencil*** icon.
+1.  `Deselect` the current selections,
+1.  `Search` for **NIST** and select the **Policy** groups for <u>**AWS**</u>.  (ie NIST-800-53 and NIST-800-171),
+1.  `Save` your selection,
 
 
 #### VALIDATION QUESTION
 
-1.  What is the *Project ID* for the project created in this lesson?
+1.  What is the *Project ID* (UUID) for the project (Lab01-Project) created in this lesson?
 
 #### END OF LAB
 
