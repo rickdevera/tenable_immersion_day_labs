@@ -2,23 +2,21 @@
 
 ## IaC Scanning
 
-### Objective:
+### Task Summmary:
 
-- I can create a Github account
-- I can create a Github connection
-- I can assign repositories to a Tenable.cs project
-- I can fork a Github repository
-- I can scan IaC
-- I can identify Misconfigurations
-- I can remediate code and create Pull Requests
-- I can setup Auto Remediation
+- Create a GitHub account
+- Create a GitHub connection
+- Assign a repository to a Tenable.cs project
+- Fork a GitHub repository
+- Scan IaC
+- Identify Misconfigurations
+- Remediate code and create Pull Requests
+- Setup Auto Remediation
 
 ### Prerequisites
 - Tenable.io account
-- Prior knowledge of GitHub - https://docs.github.com/en/get-started/quickstart/hello-world
+- Prior knowledge of GitHub (Please read- https://docs.github.com/en/get-started/quickstart/hello-world)
 - Understand use cases of Infrastructure as Code (IaC)
-- Skills
-  - Prior knowledge of networking, and Microsoft Windows and browser
 - Completed LabExercise-01.
 
 ## Tasks
@@ -49,8 +47,8 @@ If this has already been done, skip to the next section
 #### Create a Project
 
 1.  Create a new project
-    - Name:   iac_demo_project
-    - Provider:  AWS
+    - Name:  Lab02
+    - Provider: AWS
 
 ### Adding Repository to Project
 
@@ -64,7 +62,7 @@ If this has already been done, skip to the next section
 1.  Select the repository **tenable-awsjam-demo**
 Some repositories may be listed and can be selected, however they will not be used in this lab.
 1.  `Select` **Continue**
-1.  `Assign` (enable) **iac_demo_project** <sub>(or projected created for this lab)</sub>
+1.  `Assign` (enable) **Lab02** <sub>(or projected created for this lab)</sub>
 1.  `Select` **Connect*
 
 
