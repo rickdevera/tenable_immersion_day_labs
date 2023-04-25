@@ -4,10 +4,10 @@
 
 ### Objective:
 
-- I can View/Export compliance reports
-- I can Create a Custom Policy Group
-- I can Add Custom Policy Group to Project
-- I can Scan custom policy  
+- Able to View/Export compliance reports.
+- Able to Create a Custom Policy Group.
+- Able to Add Custom Policy Group to Project.
+- Able to Scan custom policy.
 
 ### Prerequisites
 - Tenable.io account
@@ -44,7 +44,7 @@
   
   ## VALIDATION QUESTION
   1.  What is the compliance coverage for Infrastructure Security?
-  1.  HOw many High severity, non-compliant policies were found?
+  1.  How many High severity, non-compliant policies were found?
   1.  What is the compliance coverage for the Project we selected?
 
 
